@@ -1,0 +1,34 @@
+<script>
+export default {
+  // reactive state
+  data() {
+    return {
+      business: "Edward's Scissor Hair Cuttery, 8887 University Blvd, North Charleston, SC 29406",
+      when: Date.now()/* + Math.floor(Math.random() * 4) * 1800000*/,
+      count: Math.floor(Math.random() * 9) + 1,
+      visitor: "E",
+    }
+  },
+
+  // functions that mutate state and trigger updates
+  methods: {
+    increment() {
+      this.count++
+    },
+    appointmentTime(date) { return new Date(this.when).toLocaleTimeString(); }
+  },
+
+  // lifecycle hooks
+  mounted() {
+    console.log(`The initial count is ${this.count}.`)
+  }
+}
+</script>
+
+<template>
+  <p>Hello, {{ visitor}}. We have you scheduled for <strong>{{ appointmentTime(when) }}</strong> at {{ business }}.</p>
+  <p>
+    You are #{{ count }} in line.
+  </p>
+  <button @click="increment">Tap to confirm.</button>
+</template>
